@@ -1,5 +1,7 @@
 part of 'weather_cubit.dart';
 
+// Always create states first, coz states are the reasons for creating cubit in the first place
+// There is going to be an initial state, loading state (waiting for the future to complete), successful state, error state when we get an exception
 @immutable
 abstract class WeatherState {
   const WeatherState();
@@ -14,7 +16,8 @@ class WeatherLoading extends WeatherState {
 }
 
 class WeatherLoaded extends WeatherState {
-  final Weather weather;
+  // We want hold an actual state field in this particular class
+  final Weather weather; // Weather model class
   const WeatherLoaded(this.weather);
 
   @override

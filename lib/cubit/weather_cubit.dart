@@ -5,11 +5,12 @@ import 'package:meta/meta.dart';
 
 part 'weather_state.dart';
 
+// The only thing that bloc adds on cubit are the events
 class WeatherCubit extends Cubit<WeatherState> {
   final WeatherRepository _weatherRepository;
 
   WeatherCubit(this._weatherRepository) : super(WeatherInitial());
-
+  // We are working with weather repository that returns a Future
   Future<void> getWeather(String cityName) async {
     try {
       emit(WeatherLoading());

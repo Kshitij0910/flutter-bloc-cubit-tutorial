@@ -19,6 +19,7 @@ class _WeatherSearchPageState extends State<WeatherSearchPage> {
         padding: EdgeInsets.symmetric(vertical: 16),
         alignment: Alignment.center,
         child: BlocConsumer<WeatherBloc, WeatherState>(
+          // BlocConsumer merges BlocBuilder and BlockListener allowing to build and listen to the bloc at the same time
           listener: (context, state) {
             if (state is WeatherError) {
               Scaffold.of(context).showSnackBar(
@@ -37,7 +38,8 @@ class _WeatherSearchPageState extends State<WeatherSearchPage> {
               return buildColumnWithData(state.weather);
             } else {
               // (state is WeatherError)
-              return buildInitialInput();
+              return buildInitialInput(); // When you are building the UI you should only build the UI, return some widgets and not do anything else.
+              // For eg, you cannot navigate to a page during a build, or show a SnackBar
             }
           },
         ),
